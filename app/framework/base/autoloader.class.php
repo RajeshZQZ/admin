@@ -1,18 +1,21 @@
 <?php
-class framework_base_autoloader {
+class framework_base_autoloader
+{
     public static $loader;
 
     /**
      * 构造函数
      */
-    private function __construct() {
+    private function __construct()
+    {
         spl_autoload_register(array(
             $this,
             'import'
         ));
     }
 
-    public static function init() {
+    public static function init()
+    {
         // 静态化自调用
         if (self::$loader == NULL)
             self::$loader = new self();
@@ -23,7 +26,8 @@ class framework_base_autoloader {
     /**
      * 固定路径的class 类文件 以.class.php 结尾
      */
-    protected function import($className) {
+    protected function import($className)
+    {
 
         $path = array();
         $pathDir = '';
@@ -39,3 +43,4 @@ class framework_base_autoloader {
         spl_autoload_extensions('.class.php');
         spl_autoload($pathDir . "/" . $path[$arrCount]);
     }
+}

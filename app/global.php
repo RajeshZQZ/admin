@@ -14,8 +14,9 @@
    	   // $appPath = ACT_PATH . $_REQUEST['act'] . '.class.php';
     	$className = 'ctrl_' . $_REQUEST['act']; /* 类名 */
      if ( !class_exists( $className ) ) {
-    	header( 'HTTP/1.1 404 Not Found' );
-    	die;
+    	echo "11111";
+         //header( 'HTTP/1.1 404 Not Found' );
+    //	die;
         }
        $obj = new $className();
        runAction($obj);
@@ -24,8 +25,9 @@
 	 function runAction($obj)
 	{
 	    if (!method_exists($obj, $_REQUEST['st'])) {
-	        header( 'HTTP/1.1 404 Not Found' );
-	        exit;
+	      echo "222222";
+	        //  header( 'HTTP/1.1 404 Not Found' );
+	       // exit;
 	//        header('Content-Type:text/html;charset=utf-8');
 	//        die('错误，方法不存在');
 	    }
