@@ -1,12 +1,4 @@
-<?php 
-
-class global 
-{
-	
-	function __construct()
-	{
-		
-	}
+<?php
 
 	function doAction()
 	{
@@ -19,7 +11,7 @@ class global
         $_REQUEST['st'] = 'main';
         }
 
-   	    $appPath = ACT_PATH . $_REQUEST['act'] . '.class.php';
+   	   // $appPath = ACT_PATH . $_REQUEST['act'] . '.class.php';
     	$className = 'ctrl_' . $_REQUEST['act']; /* 类名 */
      if ( !class_exists( $className ) ) {
     	header( 'HTTP/1.1 404 Not Found' );
@@ -39,4 +31,3 @@ class global
 	    }
 	    $obj->$_REQUEST['st']();
 	}
-}
