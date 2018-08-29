@@ -6,5 +6,5 @@
  * Time: 0:56
  */
 
-define ('PATTH_FRAMEWORK',dirname(__FILE__) . '/framework');
-define ('ACT_PATH',__DIR__ . '/ctrl/');
+//define ('PATTH_FRAMEWORK',dirname(__FILE__) . '/framework');
+define ('ACT_PATH',dirname(__FILE__) . '/ctrl/');
