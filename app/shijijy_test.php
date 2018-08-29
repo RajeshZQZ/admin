@@ -1,5 +1,6 @@
 <?php
-$_REQUEST['act'] = 'payment_shijijy_index';
-$_REQUEST['st'] = 'pay_notify';
-require (dirname(__FILE__) . '/../app/init.php');
-doAction();/* 转至对应方法 */
+$_REQUEST['act'] = 'test_dotest';
+$_REQUEST['st'] = 'james';
+require ('/usr/local/httpd/htdocs/init.php');
+  doAction();//转至对应方法
+
