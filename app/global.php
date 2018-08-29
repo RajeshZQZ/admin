@@ -13,8 +13,10 @@
 
    	   // $appPath = ACT_PATH . $_REQUEST['act'] . '.class.php';
     	$className = 'ctrl_' . $_REQUEST['act']; /* 类名 */
+    	//ctrl_index
      if ( !class_exists( $className ) ) {
     	echo "11111";
+         exit;
          //header( 'HTTP/1.1 404 Not Found' );
     //	die;
         }
