@@ -6,4 +6,4 @@
  * Time: 15:08
  */
 
-define('APP_DIR',dirname(__FILE__).'/app/');
+define('APP_DIR',dirname(__FILE__));
