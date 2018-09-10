@@ -16,18 +16,18 @@ class ctrl_test_db
 static $mysql_server = '47.98.188.59';
 static $mysql_username = 'root';
 static $mysql_password = 'pig123456';
-public $mysql_database = 'db_moke';
+static $mysql_database = 'db_moke';
 
 
 public function connect_db(){
-    $db = new mysqli(self::$mysql_server,self::$mysql_username,self::$mysql_password);
-    if (!empty($conn)){
+    $db = mysqli_connect(self::$mysql_server,self::$mysql_username,self::$mysql_password,self::$mysql_database);
+    if (!empty($db)){
 die('Mysql connect fails :'.mysqli_connect_error());
     }else {
         die('Mysql connect success!');
     }
     //断开数据库连接
-    $db->close();
+    mysql_close($db);
 }
 
 public function close_mysql(){
