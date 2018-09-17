@@ -28,19 +28,33 @@ public function connect_db(){
     }else{
         echo "数据库连接成功~！";
     }
-    $result=$db->query("SELECT `id` FROM `moketest_config` where 1");
-    $row=$result->fetch_row();
+   // $result=$db->query("SELECT `id` FROM `moketest_config` where 1");
+   // $row=$result->fetch_row();
+   // var_dump($row);
+   //断开数据库连接
+   // mysql_close($db);
+}
+
+public function close_mysql($db){
     //断开数据库连接
     mysql_close($db);
 }
 
-public function close_mysql(){
+public function select_mysql($sql){
 
 }
 
+public function insert_mysql($sql){
 
+}
 
+public function delete_mysql($sql){
 
+}
+
+public function update_mysql($sql){
+
+}
 
 
 
