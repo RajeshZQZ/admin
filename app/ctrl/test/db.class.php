@@ -20,12 +20,16 @@ static $mysql_database = 'db_moke';
 
 
 public function connect_db(){
-    $db = mysqli_connect(self::$mysql_server,self::$mysql_username,self::$mysql_password,self::$mysql_database);
-    if (!empty($db)){
-die('Mysql connect fails :'.mysqli_connect_error());
-    }else {
-        die('Mysql connect success!');
+    $db = new mysqli(self::$mysql_server,self::$mysql_username,self::$mysql_password,self::$mysql_database);
+    if(mysqli_connect_error()){
+    //返回链接错误号
+    // 返回链接错误信息
+        die("数据库链接失败：".$conn->connect_error);
+    }else{
+        echo "数据库连接成功~！";
     }
+    $result=$db->query("SELECT `id` FROM `moketest_config` where 1");
+    $row=$result->fetch_row();
     //断开数据库连接
     mysql_close($db);
 }
