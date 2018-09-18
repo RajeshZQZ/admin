@@ -19,8 +19,8 @@ static $mysql_password = 'pig123456';
 static $mysql_database = 'db_moke';
 
 
-public function connect_db(){
-    $db = new mysqli(self::$mysql_server,self::$mysql_username,self::$mysql_password,self::$mysql_database);
+public function connect_db($mysql_database='db_moke'){
+    $db = new mysqli(self::$mysql_server,self::$mysql_username,self::$mysql_password,$mysql_database);
     if(mysqli_connect_error()){
     //返回链接错误号
     // 返回链接错误信息
