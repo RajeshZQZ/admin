@@ -8,36 +8,47 @@
  */
 class model_base
 {
-/*创建数据库连接，关闭等功能
- *
- *
- *
- */
-static $mysql_server = '47.98.188.59';
-static $mysql_username = 'root';
-static $mysql_password = 'pig123456';
-public $mysql_database = 'db_moke';
-
-
-public function connect_db(){
-    $db = new mysqli(self::$mysql_server,self::$mysql_username,self::$mysql_password);
-    if (!empty($conn)){
-die('Mysql connect fails :'.mysqli_connect_error());
-    }else {
-        die('Mysql connect success!');
+    /*创建数据库连接，关闭等功能
+     */
+    static $mysql_server = '47.98.188.59';
+    static $mysql_username = 'root';
+    static $mysql_password = 'pig123456';
+    static $db = null;
+    public function connect_db($mysql_database='db_moke'){
+        if (self::$db == null){
+            self::$db = new mysqli(self::$mysql_server,self::$mysql_username,self::$mysql_password,$mysql_database);
+        }
+        if(mysqli_connect_error()){
+            //返回链接错误号
+            // 返回链接错误信息
+            die("数据库链接失败：".self::$db->connect_error);
+        }else{
+            echo "数据库连接成功~！";
+            return self::$db;
+        }
+        // $result=$db->query("SELECT `id` FROM `moketest_config` where 1");
+        // $row=$result->fetch_row();
+        // var_dump($row);
+        //断开数据库连接
+        // mysql_close($db);
     }
-    //断开数据库连接
-    $db->close();
-}
 
-public function close_mysql(){
+    /**
+     * 获取多行数据
+     */
+    public function getAll($sql){
+        $data = array();
+        $res = $this->connect_db()->query($sql);
+        while($row = $res->fetch_assoc()){
+            $data = $row;
+        }
+        return $data;
+    }
 
-}
-
-
-
-
-
+    public function close_mysql($db){
+        //断开数据库连接
+        $this->connect_db()->close();
+    }
 
 
 }
