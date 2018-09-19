@@ -12,7 +12,7 @@ class ctrl_moke_conf
     public function input()
     {
         $date = $_POST;
-        echo $_POST;
+        echo  json_encode($_POST);
       //  $pare = array(
       //      'name' => $_POST['name'],
       //      'type' => $_REQUEST['type'],
