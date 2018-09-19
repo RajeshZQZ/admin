@@ -13,10 +13,11 @@ class model_base
     static $mysql_server = '47.98.188.59';
     static $mysql_username = 'root';
     static $mysql_password = 'pig123456';
-    public $db = null;
+    static $db =NULL;
+    static $_instance;
     public function connect_db($mysql_database='db_moke'){
-        if ($this->db== null){
-            $db = new mysqli(self::$mysql_server,self::$mysql_username,self::$mysql_password,$mysql_database);
+        if (self::$db== null){
+            self::$db = new mysqli(self::$mysql_server,self::$mysql_username,self::$mysql_password,$mysql_database);
         }
         if(mysqli_connect_error()){
             //返回链接错误号
@@ -24,7 +25,7 @@ class model_base
             die("数据库链接失败：".self::$db->connect_error);
         }else{
             echo "数据库连接成功~！";
-            return $this->db;
+            return self::$db;
         }
         // $result=$db->query("SELECT `id` FROM `moketest_config` where 1");
         // $row=$result->fetch_row();

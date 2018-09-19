@@ -21,11 +21,11 @@ class model_moke_conf extends model_base
     }
 
     public function test(){
-        $db = parent::connect_db();
+        $dba = parent::connect_db();
         $sql = "SELECT * FROM `moketest_config` WHERE 1;";
         echo $sql;
-        $result = $db->query($sql);
-        $date = mysqli_fetch_all($result);
+        $result = $dba->query($sql);
+        $date = $result->fetch_assoc();
         echo "<br>test:".json_encode($date);
         return $date;
     }
