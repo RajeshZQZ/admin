@@ -13,19 +13,25 @@ class ctrl_moke_conf
     {
         $date = $_POST;
         echo $_POST;
-        $pare = array(
-            'name' => $_POST['name'],
-            'type' => $_REQUEST['type'],
-            'url' => $_REQUEST['url'],
-            'check_url' => $_REQUEST['check_url'],
-            'Interface_array' => $_REQUEST['Interface_array'] )
-    $db = new model_moke_conf();
-    $res = $db->insert($date);
-if (!empty($res)) {
-    echo "插入成功~！";
-} else {
-    echo "插入失败~！";
-}
+      //  $pare = array(
+      //      'name' => $_POST['name'],
+      //      'type' => $_REQUEST['type'],
+      //      'url' => $_REQUEST['url'],
+      //     'check_url' => $_REQUEST['check_url'],
+     //       'Interface_array' => $_REQUEST['Interface_array'] )
+    $db = model_moke_conf();
+    $res = $db->test();
+//    $res = $db->insert($date);
+        if (!empty($res)){
+            echo "OKOKOKOK`~~~".json_decode($res);
+        }else{
+            echo "NONONONONO~!~";
+        }
+/*/if (!empty($res)) {
+  //  echo "插入成功~！";
+} //else {
+    //echo "插入失败~！";
+}*/
     }
 
 }
