@@ -48,7 +48,7 @@ class model_base
 
     public function close_mysql($db){
         //断开数据库连接
-        $this->connect_db()->close();
+        mysqli_close($this->connect_db());
     }
 
 

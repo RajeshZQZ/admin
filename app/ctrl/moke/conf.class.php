@@ -21,7 +21,7 @@ class ctrl_moke_conf
            'Interface_array' => $_POST['Interface_array'] );
   //  $res = model_moke_conf::test();
         $res = model_moke_conf::insert($pare);
-        if (!$res){
+        if (empty($res)){
             echo "<br>数据插入失败~！<br>";
         }else{
             echo "<br>数据插入成功~！<br>";
