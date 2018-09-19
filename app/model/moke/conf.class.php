@@ -21,7 +21,8 @@ class model_moke_conf extends model_base
         $url  = $data['url'];
         $check_url = $data['check_url'];
         $Interface_array = $data['Interface_array'];
-        $time = '2018-09-18 03:50:36';
+        date_default_timezone_set("Asia/Shanghai");
+        $time = date('Y-m-d H:i:s',time());
         $stmt->bind_param("sissss",$name,$tpye,$url,$check_url,$Interface_array,$time);
         echo "准备执行~!";
         $res = $stmt->execute();
