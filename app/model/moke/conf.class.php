@@ -26,7 +26,7 @@ class model_moke_conf extends model_base
         echo "准备执行~!";
         $res = $stmt->execute();
         echo $res ;
-        $this->close_mysql($dba);
+        mysqli_close($dba);
         return $res;
     }
 

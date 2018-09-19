@@ -27,11 +27,7 @@ class model_base
             echo "数据库连接成功~！";
             return self::$db;
         }
-        // $result=$db->query("SELECT `id` FROM `moketest_config` where 1");
-        // $row=$result->fetch_row();
-        // var_dump($row);
-        //断开数据库连接
-        // mysql_close($db);
+
     }
 
     /**
@@ -44,11 +40,6 @@ class model_base
             $data = $row;
         }
         return $data;
-    }
-
-    public function close_mysql($db){
-        //断开数据库连接
-        mysqli_close($this->connect_db());
     }
 
 
