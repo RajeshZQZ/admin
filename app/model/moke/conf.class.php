@@ -24,7 +24,8 @@ class model_moke_conf extends model_base
         $db = parent::connect_db();
         $sql = "SELECT * FROM moketest_config WHERE 1;";
         $result = $db->query($sql);
-        return $result;
+        $date = mysqli_fetch_all($result);
+        return $date;
     }
 }
 

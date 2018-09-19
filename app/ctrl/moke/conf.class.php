@@ -23,7 +23,7 @@ class ctrl_moke_conf
     $res = $db->test();
 //    $res = $db->insert($date);
         if (!empty($res)){
-            echo "OKOKOKOK`~~~".json_decode($res);
+            echo "OKOKOKOK`~~~".var_dump($res);
         }else{
             echo "NONONONONO~!~";
         }
