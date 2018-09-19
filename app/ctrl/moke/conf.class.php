@@ -19,8 +19,7 @@ class ctrl_moke_conf
       //      'url' => $_REQUEST['url'],
       //     'check_url' => $_REQUEST['check_url'],
      //       'Interface_array' => $_REQUEST['Interface_array'] )
-    $db = model_moke_conf();
-    $res = $db->test();
+    $res = model_moke_conf::test();
 //    $res = $db->insert($date);
         if (!empty($res)){
             echo "OKOKOKOK`~~~".var_dump($res);
