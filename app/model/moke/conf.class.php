@@ -31,13 +31,25 @@ class model_moke_conf extends model_base
         return $res;
     }
 
-    public function test(){
+    public function get_conf(){
+        $dba = parent::connect_db();
+        $sql = "SELECT * FROM `moketest_config` WHERE 1 ORDER BY `id` DESC limit 1;";
+        echo $sql;
+        $result = $dba->query($sql);
+        $date = $result->fetch_assoc();
+    //  echo "<br>test:".json_encode($date);
+        mysqli_close($dba);
+        return $date;
+    }
+
+    public function get_conf_list(){
         $dba = parent::connect_db();
         $sql = "SELECT * FROM `moketest_config` WHERE 1;";
         echo $sql;
         $result = $dba->query($sql);
         $date = $result->fetch_assoc();
-        echo "<br>test:".json_encode($date);
+        //  echo "<br>test:".json_encode($date);
+        mysqli_close($dba);
         return $date;
     }
 }

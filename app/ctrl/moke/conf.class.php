@@ -9,29 +9,54 @@
 //require_once APP_DIR.'model/conf.class.php';
 class ctrl_moke_conf
 {
-    public function input()
-    {
-        $date = $_POST;
-        echo  json_encode($_POST);
-      $pare = array(
-           'name' => $_POST['name'],
-           'type' => $_POST['type'],
-           'url' => $_POST['url'],
-           'check_url' => $_POST['check_url'],
-           'Interface_array' => $_POST['Interface_array'] );
-  //  $res = model_moke_conf::test();
-        $res = model_moke_conf::insert($pare);
-        if (empty($res)){
-            echo "<br>数据插入失败~！<br>";
-        }else{
-            echo "<br>数据插入成功~！<br>";
+    public function main(){
+        $data = array();
+        $data['name'] = $_POST['name'];
+        $data['type'] = $_POST['type'];
+        $data['url'] = $_POST['url'];
+        $data['check_url'] = $_POST['check_url'];
+        $data['Interface_array'] = $_POST['Interface_array'];
+
+        if (empty($data)){
+            die("提交数据为空~！请输入配置参数！");
+            include_once TEMPLATE.'mokeConf.html';
+            exit();
+        }elseif (empty($data['name']) || empty($data['type']) || empty($data['url'])
+        || empty($data['check_url']) || empty($data['Interface_array'])){
+            die("提交数据不完整，请重新输入~！");
+            include_once TEMPLATE.'mokeConf.html';
+            exit();
         }
-/*/if (!empty($res)) {
-  //  echo "插入成功~！";
-} //else {
-    //echo "插入失败~！";
-}*/
+        $this ->input($data);
+
+
+
+
+
+
+
     }
+
+
+    public function input($data)
+    {
+        echo  json_encode($data);
+
+        $res = model_moke_conf::insert($data);
+        if (empty($res)){
+            die("数据插入失败~！");
+        }else{
+            //header('Location: http://47.98.188.59/game01/admin/');
+            die("数据插入成功~！");
+        }
+    }
+
+    public  function output(){
+        $result = model_moke_conf::get_conf();
+
+
+    }
+
 
 }
 
