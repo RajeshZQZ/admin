@@ -48,7 +48,7 @@ echo "<br>11111".json_encode($data);
     public  function output(){
         echo "<br>44444";
         $result = model_moke_conf::get_conf();
-        echo json_decode($result);
+        echo json_encode($result);
         while (!empty($result)){
             echo "<table border='1' width='600' cellpadding='5' cellspacing='0'>";
             echo "<tr>
