@@ -9,12 +9,12 @@
 
 class model_moke_conf extends model_base
 {
-
+    static $dba = NULL;
     public function insert($data){
         echo "<br>3333".json_encode($data)."<br>";
-        $dba = parent::connect_db();
+        self::$dba = parent::connect_db();
         $sql = "INSERT INTO moketest_config(name,typ,url,check_url,Interface_array,raw_add_time) VALUES(?,?,?,?,?,?);";
-        $stmt = $dba->prepare($sql);
+        $stmt = self::$dba->prepare($sql);
         //用变量绑定?表示的值,i表示整型,d表示浮点型,b代表二进制,s代表其它的所有
         $name = $data['name'];
         $tpye = $data['type'];
@@ -32,12 +32,17 @@ class model_moke_conf extends model_base
     }
 
     public function get_conf(){
-        $dba = parent::connect_db();
-        $sql = "SELECT * FROM `moketest_config` WHERE 1 ORDER BY `id` DESC limit 1;";
-        echo $sql;
-        $result = $dba->query($sql);
+        self::$dba = parent::connect_db();
+        $sql = "SELECT * FROM ? WHERE (SELECT max(id) FROM ?) ORDER BY `id` DESC limit 1;";
+        $stmt = self::$dba ->prepare($sql);
+        $tab = "moketest_config";
+        $stmt->bind_param("ss", $tab,$tab);
+        $stmt->execute();
+        $result = $stmt->get_result();
+ //       $result = $dba->query($sql);
         $date = $result->fetch_assoc();
     //  echo "<br>test:".json_encode($date);
+        $result->close();
         mysqli_close($dba);
         return $date;
     }
