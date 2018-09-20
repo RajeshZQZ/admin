@@ -16,7 +16,7 @@ class ctrl_moke_conf
         $data['url'] = $_POST['url'];
         $data['check_url'] = $_POST['check_url'];
         $data['Interface_array'] = $_POST['Interface_array'];
-echo json_encode($data);
+echo "<br>11111".json_encode($data);
         if (empty($data)){
             die("提交数据为空~！请输入配置参数！");
             include_once TEMPLATE.'mokeConf.html';
@@ -35,7 +35,7 @@ echo json_encode($data);
 
     public function input($data)
     {
-        echo  json_encode($data);
+        echo  "<br>22222".json_encode($data);
 
         $res = model_moke_conf::insert($data);
         if (empty($res)){
@@ -47,9 +47,10 @@ echo json_encode($data);
     }
 
     public  function output(){
+        echo "<br>44444";
         $result = model_moke_conf::get_conf();
         echo json_decode($result);
-        while ($result){
+        while (!empty($result)){
             echo "<table border='1' width='600' cellpadding='5' cellspacing='0'>";
             echo "<tr>
                         <td>ID</td>
@@ -58,8 +59,8 @@ echo json_encode($data);
                         <td>加密方式</td>
                         <td>反查接口地址</td>
                         <td>异步通知接口参数数组</td>
-                        </tr>
-                        <tr>";
+                        </tr>";
+            echo "<tr>";
             foreach ($result as $key=> $v){
                echo "<td>{$v}</td>";
             }

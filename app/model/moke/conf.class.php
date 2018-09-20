@@ -11,7 +11,7 @@ class model_moke_conf extends model_base
 {
 
     public function insert($data){
-        echo json_encode($data)."<br>";
+        echo "<br>3333".json_encode($data)."<br>";
         $dba = parent::connect_db();
         $sql = "INSERT INTO moketest_config(name,typ,url,check_url,Interface_array,raw_add_time) VALUES(?,?,?,?,?,?);";
         $stmt = $dba->prepare($sql);
