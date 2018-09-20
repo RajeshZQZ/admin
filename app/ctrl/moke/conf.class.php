@@ -16,7 +16,7 @@ class ctrl_moke_conf
         $data['url'] = $_POST['url'];
         $data['check_url'] = $_POST['check_url'];
         $data['Interface_array'] = $_POST['Interface_array'];
-
+echo json_encode($data);
         if (empty($data)){
             die("提交数据为空~！请输入配置参数！");
             include_once TEMPLATE.'mokeConf.html';
@@ -28,11 +28,7 @@ class ctrl_moke_conf
             exit();
         }
         $this ->input($data);
-
-
-
-
-
+        $this ->output();
 
 
     }
@@ -53,6 +49,9 @@ class ctrl_moke_conf
 
     public  function output(){
         $result = model_moke_conf::get_conf();
+        echo json_decode($result);
+        
+
 
 
     }
