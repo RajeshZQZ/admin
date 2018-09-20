@@ -8,14 +8,14 @@
  */
 
 class model_moke_info extends model_base {
-    static $db_config = '';
+    private $db_config = '';
     static $db = '';
     public $table = "moketest_config";
     public $para = array();
 
     public function __construct()
     {
-        self::$db = model_base::getInstance(self::$db_config);
+        self::$db = model_base::getInstance($this->db_config);
     }
 
     public function insert_info($data){
