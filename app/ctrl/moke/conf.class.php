@@ -29,8 +29,7 @@ echo json_encode($data);
         }
         $this ->input($data);
         $this ->output();
-
-
+        exit;
     }
 
 
@@ -50,10 +49,22 @@ echo json_encode($data);
     public  function output(){
         $result = model_moke_conf::get_conf();
         echo json_decode($result);
-        
-
-
-
+        while ($result){
+            echo "<table border='1' width='600' cellpadding='5' cellspacing='0'>";
+            echo "<tr>
+                        <td>ID</td>
+                        <td>Name</td>
+                        <td>异步通知接口地址URL/td>
+                        <td>加密方式</td>
+                        <td>反查接口地址</td>
+                        <td>异步通知接口参数数组</td>
+                        </tr>
+                        <tr>";
+            foreach ($result as $key=> $v){
+               echo "<td>{$v}</td>";
+            }
+            echo "<tr>";
+        }
     }
 
 
