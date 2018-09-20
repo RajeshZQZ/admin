@@ -6,41 +6,97 @@
  * Date: 2018/9/6
  * Time: 15:49
  */
-class model_base
-{
-    /*创建数据库连接，关闭等功能
-     */
-    static $mysql_server = '47.98.188.59';
-    static $mysql_username = 'root';
-    static $mysql_password = 'pig123456';
-    static $db =NULL;
-    static $_instance;
-    public function connect_db($mysql_database='db_moke'){
-        if (self::$db== null){
-            self::$db = new mysqli(self::$mysql_server,self::$mysql_username,self::$mysql_password,$mysql_database);
-        }
+
+class model_base{
+    public $conn;
+    public static $sql;
+    public static $instance=null; //单例对象
+    private $db_config;
+    private function __construct($db_config = "db_moke.php"){
+        require_once(DB."$db_config");
+        $this->conn = new mysqli($mysql_server,$mysql_username,$mysql_password,$db);
         if(mysqli_connect_error()){
             //返回链接错误号
             // 返回链接错误信息
-            die("数据库链接失败：".self::$db->connect_error);
+            die("数据库链接失败：".$this->conn->connect_error);
         }else{
             echo "数据库连接成功~！";
-            return self::$db;
+            return $this->conn;
         }
-
+        mysql_query('set names utf8',$this->conn);
     }
 
-    /**
-     * 获取多行数据
-     */
-    public function getAll($sql){
-        $data = array();
-        $res = $this->connect_db()->query($sql);
-        while($row = $res->fetch_assoc()){
-            $data = $row;
+    private function __clone(){} //覆盖__clone()方法，禁止克隆
+
+    public static function getInstance($db_config=''){
+        if(is_null(self::$instance)) {
+            if (empty($db_config)){
+                self::$instance = new model_base();
+            }else{
+                self::$instance = new model_base($db_config);
+            }
         }
-        return $data;
+        return self::$instance;
     }
 
-
+    /* 查询数据
+    $condition   条件
+    $field       查询字段
+    $table      表名
+    */
+    public function select($table,$condition=array(),$field = array()){
+        $where='';
+        if(!empty($condition)){
+            foreach($condition as $k=>$v){
+                $where.=$k."='".$v."' and ";
+            }
+            $where='where '.$where .'1=1';
+        }
+        $fieldstr = '';
+        if(!empty($field)){
+            foreach($field as $k=>$v){
+                $fieldstr.= $v.',';
+            }
+            $fieldstr = rtrim($fieldstr,',');
+        }else{
+            $fieldstr = '*';
+        }
+        self::$sql = "select {$fieldstr} from {$table} {$where};";
+        $result=mysqli_query(self::$sql,$this->conn);
+        $resuleRow = array();
+        $i = 0;
+        while($row = $result->fetch_assoc()){
+            foreach($row as $k=>$v){
+                $resuleRow[$i][$k] = $v;
+            }
+            $i++;
+        }
+        return $resuleRow;
+        }
+    /* 插入数据
+      $data         插入值
+      $values       插入字段
+      $table        表名
+      */
+public function insert($table,$data)
+{
+    $values = '';
+    $datas = '';
+    foreach ($data as $k => $v) {
+        $values .= $k . ',';
+        $datas .= "'$v'" . ',';
+    }
+    $values = rtrim($values, ',');
+    $datas = rtrim($datas, ',');
+    self::$sql = "INSERT INTO  {$table} ({$values}) VALUES ({$datas});";
+    if (mysqli_query(self::$sql)) {
+        return mysql_insert_id();
+    } else {
+        return false;
+    }
+}
+//打印最后执行的SQL
+    public function getLastSql(){
+        echo self::$sql;
+    }
 }

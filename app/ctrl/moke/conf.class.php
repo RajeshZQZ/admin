@@ -28,7 +28,6 @@ echo "<br>11111".json_encode($data);
         }
         $this ->input($data);
         $this ->output();
-        exit;
     }
 
 
@@ -36,7 +35,7 @@ echo "<br>11111".json_encode($data);
     {
         echo  "<br>22222".json_encode($data);
 
-        $res = model_moke_conf::insert($data);
+        $res = model_moke_info::insert_info($data);
         if (empty($res)){
             die("数据插入失败~！");
         }else{
@@ -47,7 +46,7 @@ echo "<br>11111".json_encode($data);
 
     public  function output(){
         echo "<br>44444";
-        $result = model_moke_conf::get_conf();
+        $result = model_moke_info::get_last_info();
         echo json_encode($result);
         if (!empty($result)){
             echo "<table border='1' width='600' cellpadding='5' cellspacing='0'>";

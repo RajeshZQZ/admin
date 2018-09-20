@@ -1,5 +1,5 @@
 <?php
-//require_once APP_DIR.'model/base.class.php';
+//require_once APP_DIR.'model/base1.class.php';
 /**
  * Created by PhpStorm.
  * User: zengqingzhang
