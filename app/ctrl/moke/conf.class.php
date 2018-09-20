@@ -18,14 +18,13 @@ class ctrl_moke_conf
         $data['Interface_array'] = $_POST['Interface_array'];
 echo "<br>11111".json_encode($data);
         if (empty($data)){
-            die("提交数据为空~！请输入配置参数！");
+            echo "提交数据为空~！请输入配置参数！";
             include_once TEMPLATE.'mokeConf.html';
             exit();
         }elseif (empty($data['name']) || empty($data['type']) || empty($data['url'])
         || empty($data['check_url']) || empty($data['Interface_array'])){
-            die("提交数据不完整，请重新输入~！");
             include_once TEMPLATE.'mokeConf.html';
-            exit();
+            die("提交数据不完整，请重新输入~！");
         }
         $this ->input($data);
         $this ->output();
@@ -42,7 +41,7 @@ echo "<br>11111".json_encode($data);
             die("数据插入失败~！");
         }else{
             //header('Location: http://47.98.188.59/game01/admin/');
-            die("数据插入成功~！");
+            echo "数据插入成功~！";
         }
     }
 
