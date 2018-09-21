@@ -23,7 +23,6 @@ class model_base{
         }else{
             echo "数据库连接成功~！";
         }
-        mysql_query('set names utf8',$this->conn);
     }
 
     private function __clone(){} //覆盖__clone()方法，禁止克隆
@@ -63,7 +62,8 @@ class model_base{
             $fieldstr = '*';
         }
         self::$sql = "select {$fieldstr} from {$table} {$where};";
-        $result=mysqli_query(self::$sql,$this->conn);
+        echo self::$sql;
+        $result=mysqli_query($this->conn,self::$sql);
         $resuleRow = array();
         $i = 0;
         while($row = $result->fetch_assoc()){
@@ -72,6 +72,7 @@ class model_base{
             }
             $i++;
         }
+        echo json_encode($resuleRow);
         return $resuleRow;
         }
     /* 插入数据

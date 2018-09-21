@@ -46,7 +46,8 @@ echo "<br>11111".json_encode($data);
 
     public  function output(){
         echo "<br>44444";
-        $result = model_moke_info::get_last_info();
+        $db = new model_moke_info();
+        $result = $db->get_last_info();
         echo json_encode($result);
         if (!empty($result)){
             echo "<table border='1' width='600' cellpadding='5' cellspacing='0'>";
