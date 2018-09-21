@@ -42,7 +42,7 @@ class model_base{
     $field       查询字段
     $table      表名
     */
-    public function select($table,$condition=array(),$field = array()){
+    public function select($table,$order_by='',$limit ='',$condition=array(),$field = array()){
         $where='';
         if(!empty($condition)){
             foreach($condition as $k=>$v){
@@ -59,7 +59,11 @@ class model_base{
         }else{
             $fieldstr = '*';
         }
-        self::$sql = "select {$fieldstr} from {$table} {$where};";
+        if (empty($order_by)){
+            self::$sql = "select {$fieldstr} from {$table} {$where} {$limit};";
+        }else{
+            self::$sql = "select {$fieldstr} from {$table} {$where} {$limit} ORDER BY {$order_by};";
+        }
         $result=mysqli_query($this->conn,self::$sql);
         $resuleRow = array();
         $i = 0;

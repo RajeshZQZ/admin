@@ -44,10 +44,12 @@ class ctrl_moke_conf
 
     public  function output(){
         $db = new model_moke_info();
-        $result = $db->get_last_info();
-        if (!empty($result)){
+        $results_one = $db->get_last_info();
+        $results_all = $db->get_all_info();
+        if (!empty($results)) {
+            echo "<p>当前插入数据：</p>";
             echo "<table border='1' width='600' cellpadding='5' cellspacing='0'>";
-            echo "<tr>
+            echo "     <tr>
                         <td>ID</td>
                         <td>Name</td>
                         <td>异步通知接口地址URL<td>
@@ -56,11 +58,41 @@ class ctrl_moke_conf
                         <td>异步通知接口参数数组</td>
                         <td>添加时间</td>
                         </tr>";
-            echo "<tr>";
-            foreach ($result as $key=> $v){
-               echo "<td>{$v}</td>";
+            $result = array();
+            foreach ($results_one as $v) {
+                echo "<tr>";
+                $result_one = $v;
+                foreach ($result_one as $key1 => $v1) {
+                    echo "<td>{$v}</td>";
+                }
+                echo "<tr>";
             }
-            echo "<tr>";
+        }else {
+            die("未查询到数据~！");
+        }
+      //所有数据
+            if(!empty($results_all)){
+            echo "<p>目所有配置数据：</p>";
+            echo "<p>当前插入数据：</p>";
+            echo "<table border='1' width='600' cellpadding='5' cellspacing='0'>";
+            echo "     <tr>
+                        <td>ID</td>
+                        <td>Name</td>
+                        <td>异步通知接口地址URL<td>
+                        <td>加密方式</td>
+                        <td>反查接口地址</td>
+                        <td>异步通知接口参数数组</td>
+                        <td>添加时间</td>
+                        </tr>";
+            $result = array();
+            foreach ($results_one as $v) {
+                echo "<tr>";
+                $result_one = $v;
+                foreach ($result_one as $key1 => $v1) {
+                    echo "<td>{$v1}</td>";
+                }
+                echo "<tr>";
+                }
         }else{
             die("未查询到数据~！");
         }

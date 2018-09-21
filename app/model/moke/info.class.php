@@ -34,13 +34,16 @@ class model_moke_info extends model_base {
 
     public function get_last_info(){
         $max['max'] = "max(id)";
-        $condition = self::$db->select($this ->table,'',$max);
-        $result = self::$db->select($this ->table,$condition);
+        $limit = "limit 1";
+        $order_by = 'id desc';
+        $condition = self::$db->select($this ->table,$order_by,'','',$max);
+        $result = self::$db->select($this->table,$order_by,$limit,$condition);
         return $result;
     }
 
     public function get_all_info(){
-        $result = self::$db->select($this ->table);
+        $order_by = 'id DESC';
+        $result = self::$db->select($this ->table,$order_by);
         return $result;
     }
 
