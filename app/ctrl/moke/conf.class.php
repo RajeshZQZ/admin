@@ -34,8 +34,8 @@ echo "<br>11111".json_encode($data);
     public function input($data)
     {
         echo  "<br>22222".json_encode($data);
-
-        $res = model_moke_info::insert_info($data);
+        $db = new model_moke_info();
+        $res = $db->insert_info($data);
         if (empty($res)){
             die("数据插入失败~！");
         }else{

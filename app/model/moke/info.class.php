@@ -14,19 +14,19 @@ class model_moke_info extends model_base {
     public $para = array();
 
     public function __construct()
-    {
+    {   //获取实例化单例
         self::$db = model_base::getInstance($this->db_config);
     }
 
     public function insert_info($data){
         $para['name'] = $data['name'];
-        $para['name'] = $data['type'];
-        $para['name'] = $data['url'];
-        $para['name'] = $data['check_url'];
-        $para['name'] = $data['Interface_array'];
+        $para['type'] = $data['type'];
+        $para['url'] = $data['url'];
+        $para['check_url'] = $data['check_url'];
+        $para['Interface_array'] = $data['Interface_array'];
         date_default_timezone_set("Asia/Shanghai");
         $time = date('Y-m-d H:i:s',time());
-        $para['time'] = $time;
+        $para['raw_add_time'] = $time;
         $res = self::$db->insert($this->table,$para);
         self::$db->getLastSql();
         return $res;

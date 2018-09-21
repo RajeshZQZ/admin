@@ -22,7 +22,6 @@ class model_base{
             die("数据库链接失败：".$this->conn->connect_error);
         }else{
             echo "数据库连接成功~！";
-            return $this->conn;
         }
         mysql_query('set names utf8',$this->conn);
     }
@@ -91,8 +90,8 @@ public function insert($table,$data)
     $values = rtrim($values, ',');
     $datas = rtrim($datas, ',');
     self::$sql = "INSERT INTO  {$table} ({$values}) VALUES ({$datas});";
-    if (mysqli_query(self::$sql)) {
-        return mysql_insert_id();
+    if (mysqli_query($this->conn,self::$sql)) {
+        return mysqli_insert_id($this->conn);
     } else {
         return false;
     }
