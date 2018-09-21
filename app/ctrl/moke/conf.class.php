@@ -46,7 +46,7 @@ class ctrl_moke_conf
         $db = new model_moke_info();
         $results_one = $db->get_last_info();
         $results_all = $db->get_all_info();
-        if (!empty($results)) {
+        if (!empty($results_one)) {
             echo "<p>当前插入数据：</p>";
             echo "<table border='1' width='600' cellpadding='5' cellspacing='0'>";
             echo "     <tr>
@@ -59,10 +59,10 @@ class ctrl_moke_conf
                         <td>添加时间</td>
                         </tr>";
             $result = array();
-            foreach ($results_one as $v) {
+            foreach ($results_one as $key =>$v) {
                 echo "<tr>";
-                $result_one = $v;
-                foreach ($result_one as $key1 => $v1) {
+                $result = $v;
+                foreach ($result as $key1 => $v1) {
                     echo "<td>{$v}</td>";
                 }
                 echo "<tr>";
@@ -73,7 +73,6 @@ class ctrl_moke_conf
       //所有数据
             if(!empty($results_all)){
             echo "<p>目所有配置数据：</p>";
-            echo "<p>当前插入数据：</p>";
             echo "<table border='1' width='600' cellpadding='5' cellspacing='0'>";
             echo "     <tr>
                         <td>ID</td>
@@ -84,12 +83,12 @@ class ctrl_moke_conf
                         <td>异步通知接口参数数组</td>
                         <td>添加时间</td>
                         </tr>";
-            $result = array();
-            foreach ($results_one as $v) {
+            $result2 = array();
+            foreach ($results_all as $key2=>$v2) {
                 echo "<tr>";
-                $result_one = $v;
-                foreach ($result_one as $key1 => $v1) {
-                    echo "<td>{$v1}</td>";
+                $result2 = $v2;
+                foreach ($result2 as $key3 => $v3) {
+                    echo "<td>{$v3}</td>";
                 }
                 echo "<tr>";
                 }
