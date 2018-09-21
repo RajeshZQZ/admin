@@ -13,7 +13,6 @@ class model_base{
     public static $instance=null; //单例对象
     private $db_config;
     private function __construct($db_config = "db_moke.php"){
-        echo "44444construct";
         require_once(DB."$db_config");
         $this->conn = new mysqli($mysql_server,$mysql_username,$mysql_password,$db);
         if(mysqli_connect_error()){
@@ -28,7 +27,6 @@ class model_base{
     private function __clone(){} //覆盖__clone()方法，禁止克隆
 
     public static function getInstance($db_config=''){
-        echo "3333333getInstance";
         if(is_null(self::$instance)) {
             if (empty($db_config)){
                 self::$instance = new model_base();
@@ -62,7 +60,6 @@ class model_base{
             $fieldstr = '*';
         }
         self::$sql = "select {$fieldstr} from {$table} {$where};";
-        echo self::$sql;
         $result=mysqli_query($this->conn,self::$sql);
         $resuleRow = array();
         $i = 0;
@@ -72,7 +69,6 @@ class model_base{
             }
             $i++;
         }
-        echo json_encode($resuleRow);
         return $resuleRow;
         }
     /* 插入数据

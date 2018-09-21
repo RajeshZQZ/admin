@@ -16,7 +16,6 @@ class ctrl_moke_conf
         $data['url'] = $_POST['url'];
         $data['check_url'] = $_POST['check_url'];
         $data['Interface_array'] = $_POST['Interface_array'];
-echo "<br>11111".json_encode($data);
         if (empty($data)){
             echo "提交数据为空~！请输入配置参数！";
             include_once TEMPLATE.'mokeConf.html';
@@ -33,7 +32,6 @@ echo "<br>11111".json_encode($data);
 
     public function input($data)
     {
-        echo  "<br>22222".json_encode($data);
         $db = new model_moke_info();
         $res = $db->insert_info($data);
         if (empty($res)){
@@ -45,10 +43,8 @@ echo "<br>11111".json_encode($data);
     }
 
     public  function output(){
-        echo "<br>44444";
         $db = new model_moke_info();
         $result = $db->get_last_info();
-        echo json_encode($result);
         if (!empty($result)){
             echo "<table border='1' width='600' cellpadding='5' cellspacing='0'>";
             echo "<tr>

@@ -35,9 +35,7 @@ class model_moke_info extends model_base {
     public function get_last_info(){
         $max['max'] = "max(id)";
         $condition = self::$db->select($this ->table,'',$max);
-        echo json_encode($condition);
         $result = self::$db->select($this ->table,$condition);
-        echo json_encode($result);
         return $result;
     }
 
