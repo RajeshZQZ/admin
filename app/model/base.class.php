@@ -62,7 +62,7 @@ class model_base{
         if (empty($order_by)){
             self::$sql = "select {$fieldstr} from {$table} {$where} {$limit};";
         }else{
-            self::$sql = "select {$fieldstr} from {$table} {$where} {$limit} ORDER BY {$order_by};";
+            self::$sql = "select {$fieldstr} from {$table} {$where} ORDER BY {$order_by} {$limit};";
         }
         $result=mysqli_query($this->conn,self::$sql);
         $resuleRow = array();
