@@ -50,13 +50,13 @@ class ctrl_moke_conf
             echo "<p>当前插入数据：</p>";
             echo "<table border='1' width='600' cellpadding='5' cellspacing='0'>";
             echo "     <tr>
-                        <td>ID</td>
-                        <td>Name</td>
-                        <td>异步通知接口地址URL</td>
-                        <td>加密方式</td>
-                        <td>反查接口地址</td>
-                        <td>异步通知接口参数数组</td>
-                        <td>添加时间</td>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>异步通知接口地址URL</th>
+                        <th>加密方式</th>
+                        <th>反查接口地址</th>
+                        <th>异步通知接口参数数组</th>
+                        <th>添加时间</th>
                         </tr>";
             $result = array();
             foreach ($results_one as $key =>$v) {
@@ -76,13 +76,13 @@ class ctrl_moke_conf
             echo "<p>目所有配置数据：</p>";
             echo "<table border='1' width='600' cellpadding='5' cellspacing='0'>";
             echo "     <tr>
-                        <td>ID</td>
-                        <td>Name</td>
-                        <td>异步通知接口地址URL</td>
-                        <td>加密方式</td>
-                        <td>反查接口地址</td>
-                        <td>异步通知接口参数数组</td>
-                        <td>添加时间</td>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>异步通知接口地址URL</th>
+                        <th>加密方式</th>
+                        <th>反查接口地址</th>
+                        <th>异步通知接口参数数组</th>
+                        <th>添加时间</th>
                         </tr>";
             $result2 = array();
             foreach ($results_all as $key2=>$v2) {
