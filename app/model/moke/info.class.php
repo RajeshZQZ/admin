@@ -28,7 +28,7 @@ class model_moke_info extends model_base {
         $time = date('Y-m-d H:i:s',time());
         $para['raw_add_time'] = $time;
         $res = self::$db->insert($this->table,$para);
-        self::$db->getLastSql();
+       // self::$db->getLastSql();
         return $res;
     }
 
