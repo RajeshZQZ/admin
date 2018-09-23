@@ -74,7 +74,7 @@ class ctrl_moke_conf
       //所有数据
             if(!empty($results_all)){
             echo "<p>目所有配置数据：</p>";
-            echo "<table border='1' width='90%' cellpadding='5' cellspacing='0'>";
+            echo "<table border='1' width='95%' cellpadding='5' cellspacing='0'>";
             echo "     <tr>
                         <th>ID</th>
                         <th>Name</th>
