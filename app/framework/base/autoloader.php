@@ -7,14 +7,14 @@
      */
     function import($className)
     {
-echo "import_classname:".$className."</br>";
+//echo "import_classname:".$className."</br>";
         $path = array();
         $pathDir = '';
         $path = explode('_', $className);
         $arrCount = count($path);
         $pathDir = implode('/', array_slice($path, 0, $arrCount));
         $filename = APP_DIR.$pathDir.'.class.php';
-echo "filename:".$filename."</br>";
+//echo "filename:".$filename."</br>";
         if (file_exists($filename)){
 	  require $filename;
         }
