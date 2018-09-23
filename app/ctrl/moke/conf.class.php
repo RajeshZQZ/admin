@@ -52,7 +52,7 @@ class ctrl_moke_conf
             echo "     <tr>
                         <td>ID</td>
                         <td>Name</td>
-                        <td>异步通知接口地址URL<td>
+                        <td>异步通知接口地址URL</td>
                         <td>加密方式</td>
                         <td>反查接口地址</td>
                         <td>异步通知接口参数数组</td>
@@ -63,9 +63,10 @@ class ctrl_moke_conf
                 echo "<tr>";
                 $result = $v;
                 foreach ($result as $key1 => $v1) {
-                    echo "<td>{$v}</td>";
+                    echo "<td>{$v1}</td>";
                 }
                 echo "<tr>";
+                echo "</table>";
             }
         }else {
             die("未查询到数据~！");
@@ -77,7 +78,7 @@ class ctrl_moke_conf
             echo "     <tr>
                         <td>ID</td>
                         <td>Name</td>
-                        <td>异步通知接口地址URL<td>
+                        <td>异步通知接口地址URL</td>
                         <td>加密方式</td>
                         <td>反查接口地址</td>
                         <td>异步通知接口参数数组</td>
@@ -92,6 +93,7 @@ class ctrl_moke_conf
                 }
                 echo "<tr>";
                 }
+                echo "</table>";
         }else{
             die("未查询到数据~！");
         }
