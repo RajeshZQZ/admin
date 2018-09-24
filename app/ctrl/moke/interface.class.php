@@ -61,28 +61,26 @@ class ctrl_moke_interface {
     }
 
     //订单反差接口
-    public static function call_sjjy(){
-        $memcache = new framework_base_memcached();
-        $memKey = 'shijijiayuan:youximocktest:sjjy:order_id:'.$_POST['orderId'];
-        $memRes = $memcache->get_cache($memKey);
-        if(empty($memRes)){
+    public static function call(){
+        $order_id = $_POST['orderId'];
+        $db = new model_moke_info();
+        $call_order = $db->get_order($order_id);
+
+        if(empty($call_order)){
             echo "订单信息获取失败！";
             exit;
         }
-        framework_static_function::write_log('世纪佳缘反查数据:'.$memRes, yang_sjjy);
-        $sjjy_order = $memRes;
-
         $response = array("code"=>0, //0成功 1失败
             //可以修改
             "message"=>"success",
-            "orderId"=>$sjjy_order['order_id'],
-            "open_id"=> $sjjy_order['openid'],
+            "orderId"=>$call_order['order_id'],
+            "open_id"=> $call_order['openid'],
             "order_date"=>date("Y-m-d H:i:s",time()-300),
             "timestamp"=>time(),
-            "amount"=>$sjjy_order['amount'],
-            "fee_amount"=> $sjjy_order['fee_amount'],
-            "real_amount"=>$sjjy_order['amount']-$sjjy_order['fee_amount'],
-            "fee_rate"=>round($sjjy_order['fee_amount']/$sjjy_order['amount'],2),
+            "amount"=>$call_order['amount'],
+            "fee_amount"=> $call_order['fee_amount'],
+            "real_amount"=>$call_order['amount']-$call_order['fee_amount'],
+            "fee_rate"=>round($call_order['fee_amount']/$call_order['amount'],2),
             //可以修改
             "callback_status"=>0,//0未通知到合作方，1已通知到合作方，2通知失败
             "callback_time"=>time()-200 //仅当callback_status为1时有效
