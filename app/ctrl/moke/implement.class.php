@@ -10,9 +10,11 @@ class ctrl_moke_implement{
 
     public function main(){
         $id = $_POST['config_id'];
-        echo $id;
         $data = $this ->get_config($id);
-        echo json_encode($data);
+        $data_para = array();
+        $data_para = explode(',', $data['Interface_array']);
+echo json_encode($data_para);
+
 
 
 
