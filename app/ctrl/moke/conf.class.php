@@ -60,6 +60,7 @@ class ctrl_moke_conf
                         <th>异步通知接口地址URL</th>
                         <th>加密方式</th>
                         <th>反查接口地址</th>
+                        <th>秘钥</th>
                         <th>异步通知接口参数数组</th>
                         <th>添加时间</th>
                         </tr>";
@@ -87,6 +88,7 @@ class ctrl_moke_conf
                         <th>异步通知接口地址URL</th>
                         <th>加密方式</th>
                         <th>反查接口地址</th>
+                        <th>秘钥</th>
                         <th>异步通知接口参数数组</th>
                         <th>添加时间</th>
                         </tr>";
