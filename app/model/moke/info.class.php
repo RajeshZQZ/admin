@@ -48,5 +48,10 @@ class model_moke_info extends model_base {
         return $result;
     }
 
-
+    public function get_conf($id){
+        $limit = "limit 1";
+        $condition = array('id'=>'$id');
+        $result = self::select($this ->table,'',$limit,$condition);
+        return $result;
+    }
 }
