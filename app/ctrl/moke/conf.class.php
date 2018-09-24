@@ -44,12 +44,15 @@ class ctrl_moke_conf
         }
     }
 
-    public  function output(){
+    public  function output($flag=0){
         $db = new model_moke_info();
         $results_one = $db->get_last_info();
-        $results_all = $db->get_all_info();
         if (!empty($results_one)) {
+            if ($flag==0){
             echo "<h2>当前插入数据：</h2>";
+            }else{
+            echo "<h2>最新插入数据：</h2>";
+            }
             echo "<table border='1' width='95%' cellpadding='5' cellspacing='0'>";
             echo "     <tr>
                         <th>ID</th>
@@ -74,6 +77,7 @@ class ctrl_moke_conf
             die("未查询到数据~！");
         }
       //所有数据
+        $results_all = $db->get_all_info();
             if(!empty($results_all)){
             echo "<h2>目所有配置数据：</h2>";
             echo "<table border='1' width='95%' cellpadding='5' cellspacing='0'>";

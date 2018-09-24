@@ -1,5 +1,4 @@
 <?php
-require_once
 /**
  * Created by PhpStorm.
  * User: zengqingzhang
