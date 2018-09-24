@@ -54,7 +54,7 @@ static $order_data = array();
         self::$order_data = $_POST;
         if (!empty($id)){
             self::$data_arr = $this ->get_config($id);
-            self::$data_para = explode(',',$data_arr['Interface_array']);
+            self::$data_para = explode(',',self::$data_arr['Interface_array']);
         }else{
             echo "未拿到config_id~！";
         }

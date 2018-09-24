@@ -86,6 +86,7 @@ class model_moke_info extends model_base {
 //保存订单数据
     public function save_order($call_orders){
         $para['config_id'] = $call_orders['config_id'];
+        $para['order_id'] = $call_orders['order_id'];
         $para['arr_order'] = json_encode($call_orders['arr_order']);
         date_default_timezone_set("Asia/Shanghai");
         $time = date('Y-m-d H:i:s',time());

@@ -29,6 +29,7 @@ class ctrl_moke_interface {
         if(empty($call_order)){
             $call_orders['arr_order'] = $order_data;
             $call_orders['config_id'] = $order_data['config_id'];
+            $call_orders['order_id'] = $order_id;
        //     echo "interface+++++++++++call_orders".json_encode($call_orders);
             $addSucc = $db->save_order($call_orders);
             if(!$addSucc){
