@@ -8,31 +8,26 @@
 
 class ctrl_moke_implement{
 
-static $data_para = array();
-static $order_data = array();
     public function main(){
         $id = $_POST['config_id'];
-        $data_arr =array();
         if (!empty($id)){
             $data_arr = $this ->get_config($id);
-            self::$data_para = explode(',',$data_arr['Interface_array']);
+            $data_para = explode(',',$data_arr['Interface_array']);
         }
-        if (!empty(self::$data_para)){
-            echo "<meta http-equiv=\"Content-Type\" content=\"text/html;charset=utf-8\" />";
-            echo "<form action='' method='post'>";
-            foreach (self::$data_para as $v) {
-                self::$order_data[$v] = '';
+        if (!empty($data_para)){
+            echo "<meta http-equiv='Content-Type' content='text/html;charset=utf-8' />";
+            echo "<form action='http://47.98.188.59/game01/admin/?act=moke_implement&st=do_moke' method='post'>";
+            echo "<input type='text' value='$id' name=config_id>";
+            foreach ($data_para as $v) {
+                $order_data[$v] = '';
                 echo "{$v}:<br>
                   <input type='text' value='' name={$v}>
                   <br>";
             }
-            echo "<input type='text' value={$data_arr} name=data_arr>";
-            echo "<input type='text' value='' name=data_para>";
             echo "<input type='submit' value='提交'>";
             echo "</form>";
         }
-        self::$order_data = $_POST;
-        $this->do_moke($data_arr,self::$order_data);
+
    //     ctrl_moke_interface::call_back($data_arr,$data_para,$order_data);
 
     }
@@ -52,9 +47,18 @@ static $order_data = array();
     }
 
     public function do_moke($data_arr,$order_data){
+        $id = $_POST['config_id'];
+        $order_data = $_POST;
+        if (!empty($id)){
+            $data_arr = $this ->get_config($id);
+            $data_para = explode(',',$data_arr['Interface_array']);
+        }else{
+            echo "未拿到config_id~！";
+        }
         echo json_encode($data_arr);
-        echo json_encode(self::$data_para);
+        echo json_encode($data_para);
         echo json_encode($order_data);
+
     }
 
 }
