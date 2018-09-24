@@ -8,29 +8,26 @@
 
 class ctrl_moke_implement{
 
+static $data_para = array();
+static $data_arr =array();
+static $order_data = array();
+
     public function main(){
         $id = $_POST['config_id'];
-        $data_arr = $this ->get_config($id);
-        $data_para = array();
-        $data_para = explode(',', $data_arr['Interface_array']);
-echo json_encode($data_para);
-        $order_data = '';
+        self::$data_arr = $this ->get_config($id);
+        self::$data_para = explode(',', self::$data_arr['Interface_array']);
         echo "<meta http-equiv=\"Content-Type\" content=\"text/html;charset=utf-8\" />";
         echo "<form action='' method='post'>";
-        foreach ($data_para as $v) {
-            $order_data[$v] = '';
+        foreach (self::$data_para as $v) {
+            self::$order_data[$v] = '';
             echo "{$v}:<br>
                   <input type='text' value='' name={$v}>
                   <br>";
         }
         echo "<input type='submit' value='提交'>";
         echo "</form>";
-        $order_data = $_POST;
-        echo json_encode($order_data);
-        exit ;
+        $this->do_moke();
    //     ctrl_moke_interface::call_back($data_arr,$data_para,$order_data);
-
-
 
     }
 
@@ -48,5 +45,10 @@ echo json_encode($data_para);
         return $conf_arr;
     }
 
+    public function do_moke(){
+        echo json_encode(self::$data_arr);
+        echo json_encode(self::$data_para);
+        echo json_encode(self::$order_data);
+    }
 
 }
