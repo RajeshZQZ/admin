@@ -38,6 +38,7 @@ class ctrl_moke_interface {
                 exit;
             }
         }
+        date_default_timezone_set("Asia/Shanghai");
         $data = array(
             "cporderid"=>$call_order['order_id'],
             "openid"=>$call_order['openid'],
@@ -49,6 +50,7 @@ class ctrl_moke_interface {
             "fee_rate"=>round($call_order['fee_amount']/$call_order['amount'],2)
         );
         echo json_encode($data);
+        /*
 //排序
         $data_str = self::sort_array($data);
 //加密
@@ -57,6 +59,7 @@ class ctrl_moke_interface {
         );
         $request_json = json_encode($request);
         self::default_curl($request_json);
+        */
     }
 
     //订单反差接口

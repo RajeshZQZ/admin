@@ -78,7 +78,7 @@ class model_moke_info extends model_base {
             foreach ($result_order as $key2 => $v2) {
                 $result2[$key2] = $v2;
             }
-            echo "2222get_order_$result2" . json_encode($result2);
+            echo "2222get_order_result2" . json_encode($result2);
 
             //     self::$db->getLastSql();
             return $result2;
