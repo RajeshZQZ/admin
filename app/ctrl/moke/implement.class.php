@@ -14,18 +14,23 @@ static $order_data = array();
 
     public function main(){
         $id = $_POST['config_id'];
-        self::$data_arr = $this ->get_config($id);
-        self::$data_para = explode(',', self::$data_arr['Interface_array']);
-        echo "<meta http-equiv=\"Content-Type\" content=\"text/html;charset=utf-8\" />";
-        echo "<form action='' method='post'>";
-        foreach (self::$data_para as $v) {
-            self::$order_data[$v] = '';
-            echo "{$v}:<br>
+        if (!empty($id)){
+            self::$data_arr = $this ->get_config($id);
+            self::$data_para = explode(',', self::$data_arr['Interface_array']);
+        }
+        if (!empty(self::$data_para)){
+            echo "<meta http-equiv=\"Content-Type\" content=\"text/html;charset=utf-8\" />";
+            echo "<form action='' method='post'>";
+            foreach (self::$data_para as $v) {
+                self::$order_data[$v] = '';
+                echo "{$v}:<br>
                   <input type='text' value='' name={$v}>
                   <br>";
+            }
+            echo "<input type='submit' value='提交'>";
+            echo "</form>";
         }
-        echo "<input type='submit' value='提交'>";
-        echo "</form>";
+
         $this->do_moke();
    //     ctrl_moke_interface::call_back($data_arr,$data_para,$order_data);
 
