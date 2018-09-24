@@ -15,6 +15,7 @@ class ctrl_moke_conf
         $data['type'] = $_POST['type'];
         $data['url'] = $_POST['url'];
         $data['check_url'] = $_POST['check_url'];
+        $data['app_cecret'] = $_POST['app_cecret'];
         $data['Interface_array'] = $_POST['Interface_array'];
         if (empty($data)){
             echo "提交数据为空~！请输入配置参数！";
