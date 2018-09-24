@@ -70,9 +70,11 @@ class model_moke_info extends model_base {
             }
             $result2['id'] = $result1['id'];
             $result2['config_id'] = $result1['config_id'];
-            $result_order = json_decode($result1['arr_order']);
+            $result_order = array();
+            $result_order = json_decode($result1['arr_order'],TRUE);
+       //     $result_order = json_decode($result1['arr_order']);
         //    $result2['arr_order'] = $result1['arr_order'];
-            echo "1111get_order_$result_order" . json_encode($result2);
+            echo "1111get_order_result_order" . json_encode($result_order);
             foreach ($result_order as $key2 => $v2) {
                 $result2[$key2] = $v2;
             }
