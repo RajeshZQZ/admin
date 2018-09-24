@@ -58,7 +58,7 @@ class model_moke_info extends model_base {
 
     public function get_order($order_id){
         $limit = "limit 1";
-        $condition['id'] = $order_id;
+        $condition['order_id'] = $order_id;
         $order_table = "moke_order";
         $result1 = array();
         $results = self::$db->select($order_table, '', $limit, $condition);
