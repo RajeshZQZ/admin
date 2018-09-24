@@ -11,7 +11,6 @@ class ctrl_moke_implement{
 static $data_para = array();
 static $data_arr =array();
 static $order_data = array();
-
     public function main(){
         $id = $_POST['config_id'];
         if (!empty($id)){
@@ -30,7 +29,7 @@ static $order_data = array();
             echo "<input type='submit' value='提交'>";
             echo "</form>";
         }
-
+        self::$order_data = $_POST;
         $this->do_moke();
    //     ctrl_moke_interface::call_back($data_arr,$data_para,$order_data);
 
