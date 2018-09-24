@@ -6,7 +6,7 @@
  * Time: 15:49
  */
 
-class curl_moke_select extends ctrl_moke_conf {
+class ctrl_moke_select extends ctrl_moke_conf {
 //获取后台配置
     public function main(){
         $this->show_conf();
