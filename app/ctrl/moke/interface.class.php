@@ -13,7 +13,7 @@ class ctrl_moke_interface {
     static $app_secret = '';
 
     //订单异步通知
-    public static function call_back($data_arr,$data_para,$order_data){
+    public static function call_back($data_arr,$order_data){
         /*
         $memcache = new framework_base_memcached();
         $memKey = 'shijijiayuan:youximocktest:sjjy:order_id:'.$_GET['orderId'];
@@ -27,6 +27,7 @@ class ctrl_moke_interface {
         $order_id = $order_data['order_id'];
         $db = new model_moke_info();
         $call_order = $db->get_order($order_id);
+
         if(empty($call_order)){
             $call_orders['arr_order'] = $order_data;
             $call_orders['config_id'] = $order_data['config_id'];

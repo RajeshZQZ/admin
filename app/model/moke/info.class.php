@@ -60,23 +60,27 @@ class model_moke_info extends model_base {
         $limit = "limit 1";
         $condition['id'] = $order_id;
         $order_table = "moke_order";
-        $result = array();
-        $results = self::$db->select($order_table,'',$limit,$condition);
-        foreach ($results as $key1 =>$v1) {
-            $result1 = $v1;
-        }
+        $result1 = array();
+        $results = self::$db->select($order_table, '', $limit, $condition);
+        if (empty($results)) {
+            return null;
+        } else {
+            foreach ($results as $key1 => $v1) {
+                $result1 = $v1;
+            }
             $result2['id'] = $result1['id'];
             $result2['config_id'] = $result1['config_id'];
-            $result2['arr_order'] = $result1['arr_order'];
-        echo "1111get_order_$result2".json_encode($result2);
-            foreach ($result2['arr_order'] as $key2 => $v2){
+        //    $result2['arr_order'] = $result1['arr_order'];
+            echo "1111get_order_$result2" . json_encode($result2);
+            foreach ($result1['arr_order'] as $key2 => $v2) {
                 $result2[$key2] = $v2;
             }
-        echo "2222get_order_$result2".json_encode($result2);
+            echo "2222get_order_$result2" . json_encode($result2);
 
-                          //     self::$db->getLastSql();
-        return $result2;
+            //     self::$db->getLastSql();
+            return $result2;
         }
+    }
 
 //保存订单数据
     public function save_order($call_orders){

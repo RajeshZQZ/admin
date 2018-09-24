@@ -62,7 +62,7 @@ static $order_data = array();
         echo json_encode(self::$data_para);
         echo json_encode(self::$order_data);
 
-        ctrl_moke_interface::call_back(self::$data_arr,self::$data_para,self::$order_data);
+        ctrl_moke_interface::call_back(self::$data_arr,self::$order_data);
 
 
 
