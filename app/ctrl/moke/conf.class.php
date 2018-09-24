@@ -27,7 +27,7 @@ class ctrl_moke_conf
         }
         $this ->input($data);
         $this ->output();
-        include_once TEMPLATE."mokeConf.html";
+        include_once TEMPLATE."mokeOrder.html";
 
     }
 
