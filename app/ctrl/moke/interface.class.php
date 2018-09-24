@@ -23,7 +23,6 @@ class ctrl_moke_interface {
         self::$url = $data_arr['url'];
         $call_orders = array();
         $call_order = array();
-        $order_data =array();
 
         $order_id = $order_data['order_id'];
         $db = new model_moke_info();
