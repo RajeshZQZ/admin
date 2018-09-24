@@ -21,41 +21,40 @@ class ctrl_moke_interface {
         */
         self::$app_secret = $data_arr['app_secret'];
         self::$url = $data_arr['url'];
-
+        $call_orders = array();
+        $call_order = array();
         $order_data =array();
-        $order_id = '';
+
+        $order_id = $order_data['order_id'];
         $db = new model_moke_info();
-        $order_data = $db->get_order($order_id);
-
-        if(!empty($order_data)){
-            $sjjy_order = $order_data;
-        }else{
-
-            $sjjy_order = array("order_id"=>$_GET['orderId'],
-                "openid" => $_GET['openId'],
-                "amount" => $_GET['amount'],
-                "fee_amount" => $_GET['feeAmount']
-            );
-            $addSucc = $memcache->save_cache($memKey,$sjjy_order,'',1200);
+        $call_order = $db->get_order($order_id);
+        if(empty($call_order)){
+            foreach ($data_para as $value) {
+                $call_orders['arr_order'][$value] = $order_data[$value];
+            }
+            $call_orders['config_id'] = $order_data['config_id'];
+            $addSucc = $db->save_order($call_orders);
             if(!$addSucc){
-                echo "订单缓存保存失败！";
+                echo "订单入库保存失败！";
                 exit;
             }
         }
-        $data = array("cporderid"=>$sjjy_order['order_id'],
-            "openid"=>$sjjy_order['openid'],
+        $data = array(
+            "cporderid"=>$call_order['order_id'],
+            "openid"=>$call_order['openid'],
             "reqDate"=>date("Y-m-d H:i:s",time()),
             "timestamp"=>time(),
-            "amount"=>$sjjy_order['amount'],
-            "fee_amount"=>$sjjy_order['fee_amount'],
-            "real_amount"=>$sjjy_order['amount']-$sjjy_order['fee_amount'],
-            "fee_rate"=>round($sjjy_order['fee_amount']/$sjjy_order['amount'],2)
+            "amount"=>$call_order['amount'],
+            "fee_amount"=>$call_order['fee_amount'],
+            "real_amount"=>$call_order['amount']-$call_order['fee_amount'],
+            "fee_rate"=>round($call_order['fee_amount']/$call_order['amount'],2)
         );
+        echo json_encode($data);
 //排序
         $data_str = self::sort_array($data);
 //加密
         $request = array("result"=>self::encrypt($data_str),
-            "sign"=>self::sign($data_str,$app_secret)
+            "sign"=>self::sign($data_str,self::$app_secret)
         );
         $request_json = json_encode($request);
         self::default_curl($request_json);
@@ -90,17 +89,6 @@ class ctrl_moke_interface {
 
         );
         echo json_encode($response);
-
-    }
-
-    //获取moke接口配置参数
-    public function get_config ($id){
-
-        $db = new model_moke_info();
-        $results_one = $db->get_last_info();
-        $results_all = $db->get_all_info();
-
-
 
     }
 

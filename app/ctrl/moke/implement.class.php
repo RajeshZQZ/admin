@@ -7,20 +7,23 @@
  */
 
 class ctrl_moke_implement{
+static $data_arr = array();
+static $data_para = array();
+static $order_data = array();
     public function main(){
         $id = $_POST['config_id'];
         if (!empty($id)){
-            $data_arr = $this ->get_config($id);
-            $data_para = explode(',',$data_arr['Interface_array']);
+            self::$data_arr = $this ->get_config($id);
+            self::$data_para = explode(',',self::$data_arr['Interface_array']);
         }
-        if (!empty($data_para)){
+        if (!empty(self::$data_para)){
             echo "<meta http-equiv='Content-Type' content='text/html;charset=utf-8' />";
             echo "<form action='http://47.98.188.59/game01/admin/?act=moke_implement&st=do_moke' method='post'>";
             echo "config_id:<br>
                   <input type='text' value='$id' name=config_id>
                   <br>";
-            foreach ($data_para as $v) {
-                $order_data[$v] = '';
+            foreach (self::$data_para as $v) {
+                self::$order_data[$v] = '';
                 echo "{$v}:<br>
                   <input type='text' value='' name={$v}>
                   <br>";
@@ -29,7 +32,6 @@ class ctrl_moke_implement{
             echo "</form>";
         }
 
-   //     ctrl_moke_interface::call_back($data_arr,$data_para,$order_data);
 
     }
 
@@ -49,18 +51,21 @@ class ctrl_moke_implement{
 
     public function do_moke(){
         $id = $_POST['config_id'];
-        $order_data = $_POST;
-        $data_arr = array();
-        $data_para = array();
+        self::$order_data = $_POST;
         if (!empty($id)){
             $data_arr = $this ->get_config($id);
             $data_para = explode(',',$data_arr['Interface_array']);
         }else{
             echo "未拿到config_id~！";
         }
-        echo json_encode($data_arr);
-        echo json_encode($data_para);
-        echo json_encode($order_data);
+        echo json_encode(self::$data_arr);
+        echo json_encode(self::$data_para);
+        echo json_encode(self::$order_data);
+
+        ctrl_moke_interface::call_back(self::$data_arr,self::$data_para,self::$order_data);
+
+
+
 
     }
 

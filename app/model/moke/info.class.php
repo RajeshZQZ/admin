@@ -56,18 +56,39 @@ class model_moke_info extends model_base {
         return $result;
     }
 
-    public function insert_order($data){
-
-
-    }
-
     public function get_order($order_id){
         $limit = "limit 1";
         $condition['id'] = $order_id;
         $order_table = "moke_order";
-        $result = self::$db->select($order_table,'',$limit,$condition);
-        //     self::$db->getLastSql();
-        return $result;
+        $result = array();
+        $results = self::$db->select($order_table,'',$limit,$condition);
+        foreach ($results as $key1 =>$v1) {
+            $result1 = $v1;
+        }
+            $result2['id'] = $result1['id'];
+            $result2['config_id'] = $result1['config_id'];
+            $result2['arr_order'] = $result1['arr_order'];
+        echo json_encode($result2);
+            foreach ($result2['arr_order'] as $key2 => $v2){
+                $result2[$key2] = $v2;
+            }
+        echo json_encode($result2);
+
+                          //     self::$db->getLastSql();
+        return $result2;
+        }
+
+//保存订单数据
+    public function save_order($call_orders){
+        $para['config_id'] = $call_orders['config_id'];
+        $para['arr_order'] = $call_orders['arr_order'];
+        date_default_timezone_set("Asia/Shanghai");
+        $time = date('Y-m-d H:i:s',time());
+        $para['raw_add_time'] = $time;
+        $order_table = "moke_order";
+        $res = self::$db->insert($order_table,$para);
+        // self::$db->getLastSql();
+        return $res;
 
     }
 }
