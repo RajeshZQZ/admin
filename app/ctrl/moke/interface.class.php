@@ -28,10 +28,9 @@ class ctrl_moke_interface {
         $db = new model_moke_info();
         $call_order = $db->get_order($order_id);
         if(empty($call_order)){
-            foreach ($data_para as $value) {
-                $call_orders['arr_order'][$value] = $order_data[$value];
-            }
+            $call_orders['arr_order'] = $order_data;
             $call_orders['config_id'] = $order_data['config_id'];
+            echo "interface+++++++++++call_orders".json_encode($call_orders);
             $addSucc = $db->save_order($call_orders);
             if(!$addSucc){
                 echo "订单入库保存失败！";
