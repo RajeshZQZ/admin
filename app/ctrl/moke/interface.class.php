@@ -51,13 +51,14 @@ class ctrl_moke_interface {
 
 //排序
         $data_str = self::sort_array($data);
+        echo $data_str;
 //加密
-        $request = array("result"=>self::encrypt($data_str),
+    /*    $request = array("result"=>self::encrypt($data_str),
             "sign"=>self::sign($data_str,self::$app_secret)
         );
         $request_json = json_encode($request);
-        self::default_curl($request_json);
-
+      self::default_curl($request_json);
+*/
     }
 
     //订单反差接口
