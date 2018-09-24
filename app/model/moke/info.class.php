@@ -22,6 +22,7 @@ class model_moke_info extends model_base {
         $para['name'] = $data['name'];
         $para['type'] = $data['type'];
         $para['url'] = $data['url'];
+        $para['app_cecret'] = $data['app_cecret'];
         $para['check_url'] = $data['check_url'];
         $para['Interface_array'] = $data['Interface_array'];
         date_default_timezone_set("Asia/Shanghai");
