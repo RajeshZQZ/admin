@@ -19,7 +19,7 @@ echo json_encode($data_para);
         echo "<form action='' method='post'>";
         foreach ($data_para as $v) {
             $order_data[$v] = '';
-            echo "{$v}:
+            echo "{$v}:<br>
                   <input type='text' value='' name={$v}>
                   <br>";
         }
