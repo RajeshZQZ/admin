@@ -63,7 +63,7 @@ class ctrl_moke_interface {
 
     //订单反差接口
     public static function call(){
-        $order_id = $_POST['orderId'];
+        $order_id = $_GET['orderId'];
         $db = new model_moke_info();
         $call_order = $db->get_order($order_id);
 
