@@ -140,6 +140,7 @@ class ctrl_moke_interface {
     public static function default_curl($data){
 
         $https_url = self::$url;
+        echo $https_url;
         $PASS_KEYS   ="123456";
         $timeout = 20;
         $time = time();
