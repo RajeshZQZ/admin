@@ -52,7 +52,22 @@ class model_moke_info extends model_base {
         $limit = "limit 1";
         $condition['id'] = $id;
         $result = self::$db->select($this ->table,'',$limit,$condition);
-        self::$db->getLastSql();
+   //     self::$db->getLastSql();
         return $result;
+    }
+
+    public function insert_order($data){
+
+
+    }
+
+    public function get_order($order_id){
+        $limit = "limit 1";
+        $condition['id'] = $order_id;
+        $order_table = "moke_order";
+        $result = self::$db->select($order_table,'',$limit,$condition);
+        //     self::$db->getLastSql();
+        return $result;
+
     }
 }

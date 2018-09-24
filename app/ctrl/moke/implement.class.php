@@ -10,16 +10,25 @@ class ctrl_moke_implement{
 
     public function main(){
         $id = $_POST['config_id'];
-        $data = $this ->get_config($id);
+        $data_arr = $this ->get_config($id);
         $data_para = array();
-        $data_para = explode(',', $data['Interface_array']);
+        $data_para = explode(',', $data_arr['Interface_array']);
 echo json_encode($data_para);
-
-
-
-
-
-
+        $order_data = '';
+        echo "<meta http-equiv=\"Content-Type\" content=\"text/html;charset=utf-8\" />";
+        echo "<form action='' method='post'>";
+        foreach ($data_para as $v) {
+            $order_data[$v] = '';
+            echo "{$v}:
+                  <input type='text' value='' name={$v}>
+                  <br>";
+        }
+        echo "<input type='submit' value='提交'>";
+        echo "</form>";
+        $order_data = $_POST;
+        echo json_encode($order_data);
+        exit ;
+   //     ctrl_moke_interface::call_back($data_arr,$data_para,$order_data);
 
 
 

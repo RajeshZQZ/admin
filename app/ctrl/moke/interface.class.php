@@ -7,20 +7,28 @@
  */
 
 class ctrl_moke_interface {
-    const APP_SECRET = "12f03456079a4e208ab2bb44183564f5" ;//秘钥
-    const URL = "http://10test16-wap.stg3.1768.com/shijijy_notify.php";
+   // const APP_SECRET = "12f03456079a4e208ab2bb44183564f5" ;//秘钥
+    //const URL = "http://10test16-wap.stg3.1768.com/shijijy_notify.php";
+    static $url = '';
+    static $app_secret = '';
 
     //订单异步通知
-    public static function call_back(){
+    public static function call_back($data_arr,$data_para,$order_data){
         /*
         $memcache = new framework_base_memcached();
         $memKey = 'shijijiayuan:youximocktest:sjjy:order_id:'.$_GET['orderId'];
         $memRes = $memcache->get_cache($memKey);
         */
+        self::$app_secret = $data_arr['app_secret'];
+        self::$url = $data_arr['url'];
 
+        $order_data =array();
+        $order_id = '';
+        $db = new model_moke_info();
+        $order_data = $db->get_order($order_id);
 
-        if(!empty($memRes)){
-            $sjjy_order = $memRes;
+        if(!empty($order_data)){
+            $sjjy_order = $order_data;
         }else{
 
             $sjjy_order = array("order_id"=>$_GET['orderId'],
@@ -47,7 +55,7 @@ class ctrl_moke_interface {
         $data_str = self::sort_array($data);
 //加密
         $request = array("result"=>self::encrypt($data_str),
-            "sign"=>self::sign($data_str,self::APP_SECRET)
+            "sign"=>self::sign($data_str,$app_secret)
         );
         $request_json = json_encode($request);
         self::default_curl($request_json);
@@ -144,7 +152,7 @@ class ctrl_moke_interface {
     //异步通知返回
     public static function default_curl($data){
 
-        $https_url = self::URL;
+        $https_url = self::$url;
         $PASS_KEYS   ="123456";
         $timeout = 20;
         $time = time();
