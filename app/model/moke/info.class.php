@@ -70,15 +70,13 @@ class model_moke_info extends model_base {
             }
             $result2['id'] = $result1['id'];
             $result2['config_id'] = $result1['config_id'];
-            $result_order = array();
             $result_order = json_decode($result1['arr_order'],TRUE);
-       //     $result_order = json_decode($result1['arr_order']);
-        //    $result2['arr_order'] = $result1['arr_order'];
-            echo "1111get_order_result_order" . json_encode($result_order);
+
+        //    echo "1111get_order_result_order" . json_encode($result_order);
             foreach ($result_order as $key2 => $v2) {
                 $result2[$key2] = $v2;
             }
-            echo "2222get_order_result2" . json_encode($result2);
+        //    echo "2222get_order_result2" . json_encode($result2);
 
             //     self::$db->getLastSql();
             return $result2;
@@ -92,7 +90,7 @@ class model_moke_info extends model_base {
         date_default_timezone_set("Asia/Shanghai");
         $time = date('Y-m-d H:i:s',time());
         $para['raw_add_time'] = $time;
-        echo "1111save_order$para".json_encode($para);
+      //  echo "1111save_order$para".json_encode($para);
         $order_table = "moke_order";
         $res = self::$db->insert($order_table,$para);
         // self::$db->getLastSql();

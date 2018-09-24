@@ -22,8 +22,6 @@ class ctrl_moke_interface {
         self::$app_secret = $data_arr['app_secret'];
         self::$url = $data_arr['url'];
         $call_orders = array();
-        $call_order = array();
-
         $order_id = $order_data['order_id'];
         $db = new model_moke_info();
         $call_order = $db->get_order($order_id);
@@ -31,7 +29,7 @@ class ctrl_moke_interface {
         if(empty($call_order)){
             $call_orders['arr_order'] = $order_data;
             $call_orders['config_id'] = $order_data['config_id'];
-            echo "interface+++++++++++call_orders".json_encode($call_orders);
+       //     echo "interface+++++++++++call_orders".json_encode($call_orders);
             $addSucc = $db->save_order($call_orders);
             if(!$addSucc){
                 echo "订单入库保存失败！";
@@ -50,7 +48,7 @@ class ctrl_moke_interface {
             "fee_rate"=>round($call_order['fee_amount']/$call_order['amount'],2)
         );
         echo json_encode($data);
-        /*
+
 //排序
         $data_str = self::sort_array($data);
 //加密
@@ -59,7 +57,7 @@ class ctrl_moke_interface {
         );
         $request_json = json_encode($request);
         self::default_curl($request_json);
-        */
+
     }
 
     //订单反差接口
@@ -103,7 +101,7 @@ class ctrl_moke_interface {
         $encrypted = "";
         $encrypted_str = "";
 
-        $pubkey = file_get_contents("http://caipiaoapi9.stg3.24cp.com/rsa_private_key.pem");
+        $pubkey = file_get_contents("http://47.98.188.59/game01/admin/app/rsa_private_key.pem");
 
         $len = ceil(strlen($data)/$max);
         for ($i=0; $i<$len ; $i++) {
@@ -135,7 +133,6 @@ class ctrl_moke_interface {
                     $str .= $key."=".$value."&";
             }
         }
-
         return $str;
     }
 
