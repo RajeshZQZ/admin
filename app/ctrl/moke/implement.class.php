@@ -7,7 +7,6 @@
  */
 
 class ctrl_moke_implement{
-
     public function main(){
         $id = $_POST['config_id'];
         if (!empty($id)){
@@ -48,9 +47,11 @@ class ctrl_moke_implement{
         return $conf_arr;
     }
 
-    public function do_moke($data_arr,$order_data){
+    public function do_moke(){
         $id = $_POST['config_id'];
         $order_data = $_POST;
+        $data_arr = array();
+        $data_para = array();
         if (!empty($id)){
             $data_arr = $this ->get_config($id);
             $data_para = explode(',',$data_arr['Interface_array']);
