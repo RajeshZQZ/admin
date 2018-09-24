@@ -70,9 +70,10 @@ class model_moke_info extends model_base {
             }
             $result2['id'] = $result1['id'];
             $result2['config_id'] = $result1['config_id'];
+            $result_order = json_decode($result1['arr_order']);
         //    $result2['arr_order'] = $result1['arr_order'];
-            echo "1111get_order_$result2" . json_encode($result2);
-            foreach ($result1['arr_order'] as $key2 => $v2) {
+            echo "1111get_order_$result_order" . json_encode($result2);
+            foreach ($result_order as $key2 => $v2) {
                 $result2[$key2] = $v2;
             }
             echo "2222get_order_$result2" . json_encode($result2);
@@ -85,7 +86,7 @@ class model_moke_info extends model_base {
 //保存订单数据
     public function save_order($call_orders){
         $para['config_id'] = $call_orders['config_id'];
-        $para['arr_order'] = $call_orders['arr_order'];
+        $para['arr_order'] = json_encode($call_orders['arr_order']);
         date_default_timezone_set("Asia/Shanghai");
         $time = date('Y-m-d H:i:s',time());
         $para['raw_add_time'] = $time;
