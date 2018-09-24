@@ -17,7 +17,9 @@ class ctrl_moke_implement{
         if (!empty($data_para)){
             echo "<meta http-equiv='Content-Type' content='text/html;charset=utf-8' />";
             echo "<form action='http://47.98.188.59/game01/admin/?act=moke_implement&st=do_moke' method='post'>";
-            echo "<input type='text' value='$id' name=config_id>";
+            echo "config_id:<br>
+                  <input type='text' value='$id' name=config_id>
+                  <br>";
             foreach ($data_para as $v) {
                 $order_data[$v] = '';
                 echo "{$v}:<br>
