@@ -11,7 +11,8 @@ static $data_arr = array();
 static $data_para = array();
 static $order_data = array();
     public function main(){
-        $id = $_POST['config_id'];
+//        $id = $_POST['config_id'];
+	$id = $_REQUEST['config_id'];
         if (!empty($id)){
             self::$data_arr = $this ->get_config($id);
             self::$data_para = explode(',',self::$data_arr['Interface_array']);

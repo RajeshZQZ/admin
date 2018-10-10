@@ -30,11 +30,13 @@ class ctrl_moke_interface {
             $call_orders['arr_order'] = $order_data;
             $call_orders['config_id'] = $order_data['config_id'];
             $call_orders['order_id'] = $order_id;
-       //     echo "interface+++++++++++call_orders".json_encode($call_orders);
+           // echo "interface+++++++++++call_orders".json_encode($call_orders);
             $addSucc = $db->save_order($call_orders);
             if(!$addSucc){
                 echo "订单入库保存失败！";
                 exit;
+            }else{
+                $call_order = $db->get_order($order_id);
             }
         }
         date_default_timezone_set("Asia/Shanghai");
@@ -48,18 +50,19 @@ class ctrl_moke_interface {
             "real_amount"=>$call_order['amount']-$call_order['fee_amount'],
             "fee_rate"=>round($call_order['fee_amount']/$call_order['amount'],2)
         );
-        echo json_encode($data);
+        echo "<br>data".json_encode($data);
 
 //排序
         $data_str = self::sort_array($data);
+	echo "<br>";
         echo $data_str;
 //加密
-    /*    $request = array("result"=>self::encrypt($data_str),
+        $request = array("result"=>self::encrypt($data_str),
             "sign"=>self::sign($data_str,self::$app_secret)
         );
         $request_json = json_encode($request);
-      self::default_curl($request_json);
-*/
+//      self::default_curl($request_json);
+
     }
 
     //订单反差接口

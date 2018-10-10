@@ -54,7 +54,7 @@ class ctrl_moke_conf
             }else{
             echo "<h2>最新插入数据：</h2>";
             }
-            echo "<table border='1' width='95%' cellpadding='5' cellspacing='0'>";
+            echo "<table border='1' width='90%' cellpadding='5' cellspacing='0'>";
             echo "     <tr>
                         <th>ID</th>
                         <th>Name</th>
@@ -82,7 +82,7 @@ class ctrl_moke_conf
         $results_all = $db->get_all_info();
             if(!empty($results_all)){
             echo "<h2>目所有配置数据：</h2>";
-            echo "<table border='1' width='95%' cellpadding='5' cellspacing='0'>";
+            echo "<table border='1' width='90%' cellpadding='5' cellspacing='0'>";
             echo "     <tr>
                         <th>ID</th>
                         <th>Name</th>
