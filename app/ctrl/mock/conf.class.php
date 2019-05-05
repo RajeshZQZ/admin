@@ -7,7 +7,7 @@
  * Time: 15:49
  */
 //require_once APP_DIR.'model/conf.class.php';
-class ctrl_moke_conf
+class ctrl_mock_conf
 {
     public function main(){
         $data = array();
@@ -19,23 +19,23 @@ class ctrl_moke_conf
         $data['Interface_array'] = $_POST['Interface_array'];
         if (empty($data)){
             echo "提交数据为空~！请输入配置参数！";
-            include_once TEMPLATE.'mokeConf.html';
+            include_once TEMPLATE.'mockConf.html';
             exit();
         }elseif (empty($data['name']) || empty($data['type']) || empty($data['url'])
         || empty($data['check_url']) || empty($data['Interface_array'])){
-            include_once TEMPLATE.'mokeConf.html';
+            include_once TEMPLATE.'mockConf.html';
             die("提交数据不完整，请重新输入~！");
         }
         $this ->input($data);
         $this ->output();
-        include_once TEMPLATE."mokeOrder.html";
+        include_once TEMPLATE."mockOrder.html";
 
     }
 
 
     public function input($data)
     {
-        $db = new model_moke_info();
+        $db = new model_mock_info();
         $res = $db->insert_info($data);
         if (empty($res)){
             die("数据插入失败~！");
@@ -46,7 +46,7 @@ class ctrl_moke_conf
     }
 
     public  function output($flag=0){
-        $db = new model_moke_info();
+        $db = new model_mock_info();
         $results_one = $db->get_last_info();
         if (!empty($results_one)) {
             if ($flag==0){
