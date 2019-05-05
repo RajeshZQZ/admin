@@ -7,10 +7,10 @@
  * Time: 15:49
  */
 
-class model_moke_info extends model_base {
+class model_mock_info extends model_base {
     private $db_config = '';
     static $db = '';
-    public $table = "moketest_config";
+    public $table = "mocktest_config";
     public $para = array();
 
     public function __construct()
@@ -59,7 +59,7 @@ class model_moke_info extends model_base {
     public function get_order($order_id){
         $limit = "limit 1";
         $condition['order_id'] = $order_id;
-        $order_table = "moke_order";
+        $order_table = "mock_order";
         $result1 = array();
         $results = self::$db->select($order_table, '', $limit, $condition);
         if (empty($results)) {
@@ -92,7 +92,7 @@ class model_moke_info extends model_base {
         $time = date('Y-m-d H:i:s',time());
         $para['raw_add_time'] = $time;
       //  echo "1111save_order$para".json_encode($para);
-        $order_table = "moke_order";
+        $order_table = "mock_order";
         $res = self::$db->insert($order_table,$para);
         // self::$db->getLastSql();
         return $res;

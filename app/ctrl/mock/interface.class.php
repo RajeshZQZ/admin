@@ -6,7 +6,7 @@
  * Time: 15:49
  */
 
-class ctrl_moke_interface {
+class ctrl_mock_interface {
    // const APP_SECRET = "12f03456079a4e208ab2bb44183564f5" ;//秘钥
     //const URL = "http://10test16-wap.stg3.1768.com/shijijy_notify.php";
     static $url = '';
@@ -23,7 +23,7 @@ class ctrl_moke_interface {
         self::$url = $data_arr['url'];
         $call_orders = array();
         $order_id = $order_data['order_id'];
-        $db = new model_moke_info();
+        $db = new model_mock_info();
         $call_order = $db->get_order($order_id);
 
         if(empty($call_order)){
@@ -69,7 +69,7 @@ class ctrl_moke_interface {
     public static function call(){
         $order_id = $_GET['orderId'];
         echo $order_id;
-        $db = new model_moke_info();
+        $db = new model_mock_info();
         $call_order = $db->get_order($order_id);
 
         if(empty($call_order)){

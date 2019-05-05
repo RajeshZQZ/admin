@@ -12,7 +12,7 @@ class model_base{
     public static $sql;
     public static $instance=null; //单例对象
     private $db_config;
-    private function __construct($db_config = "db_moke.php"){
+    private function __construct($db_config = "db_mock.php"){
         require_once(DB."$db_config");
         $this->conn = new mysqli($mysql_server,$mysql_username,$mysql_password,$db);
         if(mysqli_connect_error()){

@@ -6,11 +6,11 @@
  * Time: 15:49
  */
 
-class ctrl_moke_select extends ctrl_moke_conf {
+class ctrl_mock_select extends ctrl_mock_conf {
 //获取后台配置
     public function main(){
         $this->show_conf();
-        include_once TEMPLATE."mokeOrder.html";
+        include_once TEMPLATE."mockOrder.html";
 
     }
 //展示后台配置信息

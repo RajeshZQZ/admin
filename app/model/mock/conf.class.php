@@ -7,13 +7,13 @@
  * Time: 15:49
  */
 
-class model_moke_conf extends model_base
+class model_mock_conf extends model_base
 {
  //   static $dba = NULL;
     public function insert($data){
         echo "<br>3333".json_encode($data)."<br>";
         $dba = parent::connect_db();
-        $sql = "INSERT INTO moketest_config(name,typ,url,check_url,Interface_array,raw_add_time) VALUES(?,?,?,?,?,?);";
+        $sql = "INSERT INTO mocktest_config(name,typ,url,check_url,Interface_array,raw_add_time) VALUES(?,?,?,?,?,?);";
         $stmt = $dba->prepare($sql);
         //用变量绑定?表示的值,i表示整型,d表示浮点型,b代表二进制,s代表其它的所有
         $name = $data['name'];
@@ -33,7 +33,7 @@ class model_moke_conf extends model_base
 
     public function get_conf(){
         $dba = parent::connect_db();
-        $sql = "SELECT * FROM moketest_config WHERE (SELECT max(id) FROM moketest_config) ORDER BY `id` DESC limit 1;";
+        $sql = "SELECT * FROM mocktest_config WHERE (SELECT max(id) FROM mocktest_config) ORDER BY `id` DESC limit 1;";
         //  $stmt = self::$dba ->prepare($sql);
         // $tab = "moketest_config";
         //$stmt->bind_param("ss", $tab,$tab);
@@ -49,7 +49,7 @@ class model_moke_conf extends model_base
 
     public function get_conf_list(){
         $dba = parent::connect_db();
-        $sql = "SELECT * FROM `moketest_config` WHERE 1;";
+        $sql = "SELECT * FROM `mocktest_config` WHERE 1;";
         echo $sql;
         $result = $dba->query($sql);
         $date = $result->fetch_assoc();
