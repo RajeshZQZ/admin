@@ -38,7 +38,7 @@ static $order_data = array();
 
 
     public function get_config($conf_id){
-        $db = new model_moke_info();
+        $db = new model_mock_info();
         $results_conf = $db->get_conf($conf_id);
         $conf_arr = array();
         foreach ($results_conf as $key =>$v) {

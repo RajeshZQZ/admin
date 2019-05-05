@@ -15,7 +15,7 @@ class model_base1
     static $mysql_password = 'pig123456';
     static $db =NULL;
     static $_instance;
-    public function connect_db($mysql_database='db_mock'){
+    public function connect_db($mysql_database='db_moke'){
         if (self::$db== null){
             self::$db = new mysqli(self::$mysql_server,self::$mysql_username,self::$mysql_password,$mysql_database);
         }
