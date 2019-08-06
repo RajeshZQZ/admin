@@ -6,7 +6,7 @@
  * Time: 15:49
  */
 
-class ctrl_moke_implement{
+class ctrl_mock_implement{
 static $data_arr = array();
 static $data_para = array();
 static $order_data = array();
@@ -19,7 +19,7 @@ static $order_data = array();
         }
         if (!empty(self::$data_para)){
             echo "<meta http-equiv='Content-Type' content='text/html;charset=utf-8' />";
-            echo "<form action='http://47.98.188.59/game01/admin/?act=moke_implement&st=do_moke' method='post'>";
+            echo "<form action='http://47.98.188.59/game01/admin/?act=mock_implement&st=do_mock' method='post'>";
             echo "config_id:<br>
                   <input type='text' value='$id' name=config_id>
                   <br>";
@@ -38,7 +38,7 @@ static $order_data = array();
 
 
     public function get_config($conf_id){
-        $db = new model_moke_info();
+        $db = new model_mock_info();
         $results_conf = $db->get_conf($conf_id);
         $conf_arr = array();
         foreach ($results_conf as $key =>$v) {
@@ -50,7 +50,7 @@ static $order_data = array();
         return $conf_arr;
     }
 
-    public function do_moke(){
+    public function do_mock(){
         $id = $_POST['config_id'];
         self::$order_data = $_POST;
         if (!empty($id)){
@@ -63,7 +63,7 @@ static $order_data = array();
         echo json_encode(self::$data_para);
         echo json_encode(self::$order_data);
 
-        ctrl_moke_interface::call_back(self::$data_arr,self::$order_data);
+        ctrl_mock_interface::call_back(self::$data_arr,self::$order_data);
 
 
 
