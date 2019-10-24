@@ -170,7 +170,7 @@ class ctrl_mock_interface {
         $data = json_decode($output,true);
         curl_close($ch);
         print_r($data);
-        return $data;
+        return $data;   
     }
 
 }
